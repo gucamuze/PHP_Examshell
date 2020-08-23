@@ -2,8 +2,8 @@
 
 class Examshell
 {
-    private $userInput, $score, $startTime, $currentTime, $timeLimit, $pointsPerExercise;
-    private $currentExercise = 0;
+    private $userInput, $startTime, $currentTime, $timeLimit, $pointsPerExercise;
+    private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
     private $on = true;
 
@@ -34,7 +34,7 @@ class Examshell
         $currentExerciseArray = $this->exercises[$this->currentExercise];
         $currentExerciseName = $currentExerciseArray["name"];
         $currentExerciseInstructions = $currentExerciseArray["instructions"];
-        $currentExerciseShellInstructions = $currentExerciseArray["shellInstructions"];
+        $currentExerciseShellInstructions = $currentExerciseArray["shellInstructions"] . "Press Enter when done, or type /help to display a list of available commands" . PHP_EOL;
 
         if (!is_dir("./" . $currentExerciseArray["name"])) {
             @system("mkdir " . $currentExerciseArray["name"]);
@@ -67,26 +67,43 @@ class Examshell
         }
 
         if ($result == $currentExerciseExpectedOutput) {
+            return true;
         } else {
             echo "\033[0;31mERROR : expected output not matching results !\033[0m" . PHP_EOL;
-            echo "\033[0;31m>>>>> FAILURE :x Try again !\033[0m" . PHP_EOL . "Press enter when you're done :)" . PHP_EOL;
+            echo "\033[0;31m>>>>> FAILURE :x Try again !\033[0m" . PHP_EOL . "Press enter when you're done, or enter /help to see available commands" . PHP_EOL;
         }
     }
 
     private function shell_display()
     {
         while ($this->on == true) {
-            $this->userInput = fgets(STDIN);
-            if ($this->userInput == "\n") {
-                // $success = false;
-                $success = $this->compile_and_check();
-                echo "success value = " .  $success . PHP_EOL;
-                if ($success == true) {
-                    $this->exercice++;
-                    // $this->createRepo($this->listeExercices[$this->exercice]);
-                    break;
-                }
+            $this->userInput = trim(fgets(STDIN));
+            $this->check_user_input();
+        }
+    }
+
+    private function check_user_input()
+    {
+        if ($this->userInput == "") {
+            // $success = false;
+            $success = $this->compile_and_check();
+            // echo "success value = " .  $success . PHP_EOL;
+            if ($success == true) {
+                $this->currentExercise++;
+                $this->score += $this->pointsPerExercise;
+                echo "\033[0;32m>>>>> SUCCESS !" . PHP_EOL . "Your new score is " . $this->score . "/100 !\033[0m" . PHP_EOL . PHP_EOL;
+                $this->create_repo($this->exercises[$this->currentExercise]);
             }
+        } else if ($this->userInput == "/help") {
+            foreach ($this->help as $key => $value) {
+                echo "Command : " . $key . " -> " . $value . PHP_EOL;
+            }
+        } else if ($this->userInput == "/time") {
+            echo "Remaining time : " .  strftime("%H:%M:%S", 14400 - (time() - $this->startTime)) . PHP_EOL;
+        } else if ($this->userInput == "/current") {
+            echo "You are currently on exercise number " . $this->currentExercise . " : " . $this->exercises[$this->currentExercise]["name"] . PHP_EOL;
+        } else if ($this->userInput == "/score") {
+            echo "You current score is " . $this->score . " / 100" . PHP_EOL;
         }
     }
 

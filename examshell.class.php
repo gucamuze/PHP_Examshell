@@ -2,7 +2,7 @@
 
 class Examshell
 {
-    private $userInput, $startTime, $currentTime, $timeLimit, $pointsPerExercise;
+    private $userInput, $startTime, $timeLimit, $pointsPerExercise;
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
     private $on = true;
@@ -11,16 +11,11 @@ class Examshell
     {
         $this->parse_examshell_json();
         $this->display_welcome_message();
-        // echo "pp exercises = " . $this->pointsPerExercise . PHP_EOL;
         $this->userInput = fgets(STDIN);
         if ($this->userInput == "\n") {
             $this->startTime = time();
             $this->start_exercise();
         }
-        // if ($this->userInput == "time\n") {
-        //     $this->currentTime = time();
-        //     echo strftime("%H:%M:%S", 14400 - ($this->currentTime - $this->startTime));
-        // }
     }
 
     private function start_exercise()
@@ -49,24 +44,38 @@ class Examshell
     {
         $currentExerciseArray = $this->exercises[$this->currentExercise];
         $currentExerciseName = $currentExerciseArray["name"];
+        $currentExerciseType = $currentExerciseArray["type"];
         $currentExerciseExpectedOutput = $currentExerciseArray["expectedOutput"];
         $result = null;
 
         try {
             if (file_exists("./" . $currentExerciseName . "/" . $currentExerciseName . ".c")) {
-                @system("gcc ./" . $currentExerciseName . "/" . $currentExerciseName . ".c");
-                @system("./a.out > result.yo");
-                @system("rm ./a.out");
-                $result = fread(fopen("./result.yo", "r"), filesize("./result.yo"));
-                @system("rm result.yo");
+                if ($currentExerciseType == "program") {
+                    @system("gcc ./" . $currentExerciseName . "/" . $currentExerciseName . ".c 2>./errorlog.txt");
+                } else {
+                    @system("gcc ./" . $currentExerciseName . "/" . $currentExerciseName . ".c ./.mains/" . $currentExerciseName . "_main.c 2>./errorlog.txt");
+                }
+                if (file_exists("./a.out")) {
+                    echo "a/out" . PHP_EOL;
+                    @system("./a.out > result.yo");
+                    @system("rm ./a.out");
+                    $result = fread(fopen("./result.yo", "r"), filesize("./result.yo"));
+                    @system("rm result.yo");
+                } else {
+                    throw new Exception("compilation error");
+                }
             } else {
-                throw new Exception();
+                throw new Exception(".c File not found in requested directory !");
             }
         } catch (\Throwable $th) {
-            echo "\033[0;31mERROR : .c File not found in directory !\033[0m" . PHP_EOL;
+            // echo "\033[0;31mERROR : .c File not found in directory !\033[0m" . PHP_EOL;
+            echo "\033[0;31mERROR : " . $th->getMessage() . "\033[0m" . PHP_EOL;
         }
 
         if ($result == $currentExerciseExpectedOutput) {
+            if (file_exists("./errorlog.txt")) {
+                @system("rm ./errorlog.txt");
+            }
             return true;
         } else {
             echo "\033[0;31mERROR : expected output not matching results !\033[0m" . PHP_EOL;
@@ -92,14 +101,19 @@ class Examshell
                 $this->currentExercise++;
                 $this->score += $this->pointsPerExercise;
                 echo "\033[0;32m>>>>> SUCCESS !" . PHP_EOL . "Your new score is " . $this->score . "/100 !\033[0m" . PHP_EOL . PHP_EOL;
-                $this->create_repo($this->exercises[$this->currentExercise]);
+                if ($this->score == 100) {
+                    echo "\033[0;32mCongratulations, you finished this Examshell \\o/\033[0m" . PHP_EOL;
+                    die;
+                } else {
+                    $this->create_repo($this->exercises[$this->currentExercise]);
+                }
             }
         } else if ($this->userInput == "/help") {
             foreach ($this->help as $key => $value) {
                 echo "Command : " . $key . " -> " . $value . PHP_EOL;
             }
         } else if ($this->userInput == "/time") {
-            echo "Remaining time : " .  strftime("%H:%M:%S", 14400 - (time() - $this->startTime)) . PHP_EOL;
+            echo "Remaining time : " .  strftime("%H:%M:%S", $this->timeLimit - (time() - $this->startTime)) . PHP_EOL;
         } else if ($this->userInput == "/current") {
             echo "You are currently on exercise number " . $this->currentExercise . " : " . $this->exercises[$this->currentExercise]["name"] . PHP_EOL;
         } else if ($this->userInput == "/score") {

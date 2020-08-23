@@ -1,0 +1,23 @@
+{
+    "timeLimit": 14400,
+    "exercises": {
+        "0": {
+            "name": "aff_z",
+            "instructions": "Filename : aff_z.c\nAuthorized Functions : write\n\nCreate a program that outputs 'z' !",
+            "shellInstructions": "Current exercise : aff_z !\nPress enter when you're done :)\n",
+            "expectedOutput": "z"
+        },
+        "1": {
+            "name": "hc_print_numbers",
+            "instructions": "Filename : hc_print_numbers.c\nAuthorized Functions : write\nPrototype : void hc_print_numbers();\n\nCreate a function that outputs 0 to 9 !",
+            "shellInstructions": "Current exercise : print_numbers !\nPress enter when you're done :)\n",
+            "expectedOutput": "0123456789"
+        }
+    },
+    "help": {
+        "help": "Displays this (duh)",
+        "time": "Displays remaining time",
+        "current": "Displays the number of the current exercise",
+        "score": "Displays the current score"
+    }
+}

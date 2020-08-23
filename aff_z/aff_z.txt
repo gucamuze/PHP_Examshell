@@ -1,4 +1,0 @@
-Filename : aff_z.c
-Authorized Functions : write
-
-Create a program that outputs 'z' !

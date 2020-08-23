@@ -1,5 +1,5 @@
 {
-    "timeLimit": 360,
+    "timeLimit": 14400,
     "exercises": {
         "0": {
             "name": "aff_z",

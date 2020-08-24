@@ -12,8 +12,15 @@
             "name": "hc_print_numbers",
             "type": "function",
             "instructions": "Filename : hc_print_numbers.c\nAuthorized Functions : write\nPrototype : void hc_print_numbers();\n\nCreate a function that outputs 0 to 9 !",
-            "shellInstructions": "Current exercise : print_numbers !\nDirectory hc_print_numbers succesfuly created\n",
+            "shellInstructions": "Current exercise : hc_print_numbers !\nDirectory hc_print_numbers succesfuly created\n",
             "expectedOutput": "0123456789"
+        },
+        "2": {
+            "name": "hc_swap",
+            "type": "function",
+            "instructions": "Filename : hc_swap.c\nAuthorized Functions : none\nPrototype : void hc_swap(int *a, int *b);\n\nCreate a function that swaps given int a and b",
+            "shellInstructions": "Current exercise : hc_swap !\nDirectory hc_swap successfuly created\n",
+            "expectedOutput": "abbakllk"
         }
     },
     "help": {

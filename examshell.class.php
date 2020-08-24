@@ -100,8 +100,8 @@ class Examshell
             if ($success == true) {
                 $this->currentExercise++;
                 $this->score += $this->pointsPerExercise;
-                echo "\033[0;32m>>>>> SUCCESS !" . PHP_EOL . "Your new score is " . $this->score . "/100 !\033[0m" . PHP_EOL . PHP_EOL;
-                if ($this->score == 100) {
+                echo "\033[0;32m>>>>> SUCCESS !" . PHP_EOL . "Your new score is " . round($this->score, 1) . "/100 !\033[0m" . PHP_EOL . PHP_EOL;
+                if ($this->currentExercise > count($this->exercises)) {
                     echo "\033[0;32mCongratulations, you finished this Examshell \\o/\033[0m" . PHP_EOL;
                     die;
                 } else {
@@ -117,15 +117,15 @@ class Examshell
         } else if ($this->userInput == "/current") {
             echo "You are currently on exercise number " . $this->currentExercise . " : " . $this->exercises[$this->currentExercise]["name"] . PHP_EOL;
         } else if ($this->userInput == "/score") {
-            echo "You current score is " . $this->score . " / 100" . PHP_EOL;
+            echo "You current score is " . round($this->score, 1) . " / 100" . PHP_EOL;
         }
     }
 
     private function parse_examshell_json()
     {
         try {
-            if (file_exists("./assets/exam.json")) {
-                $json = fread(fopen("./assets/exam.json", "r"), filesize("./assets/exam.json"));
+            if (file_exists("./.assets/exam.json")) {
+                $json = fread(fopen("./.assets/exam.json", "r"), filesize("./.assets/exam.json"));
                 $arrayFromJson = json_decode($json, true);
                 $this->timeLimit = (int) $arrayFromJson["timeLimit"];
                 $this->exercises = $arrayFromJson["exercises"];
@@ -143,7 +143,7 @@ class Examshell
     private function display_welcome_message()
     {
         @system("clear");
-        $logo = fread(fopen("./assets/logo.asciiart", "r"), filesize("./assets/logo.asciiart"));
+        $logo = fread(fopen("./.assets/logo.asciiart", "r"), filesize("./.assets/logo.asciiart"));
         echo $logo . PHP_EOL;
         echo "Welcome to PHP Examshell 00 ! Please read the README.md file before continuing" . PHP_EOL . "Press enter to begin..." . PHP_EOL;
     }

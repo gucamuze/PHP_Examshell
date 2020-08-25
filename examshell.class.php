@@ -2,7 +2,9 @@
 
 class Examshell
 {
-    private $examJsonPath = "./.assets/exams/exam_template/";
+    private $examJsonPath = "./.assets/exams/exam_Level_0/";
+    private $mainsDirectoryPath = "./.mains/Level_0/";
+    private $assignmentsDirectoryPath = "./rendu/";
     private $userInput, $startTime, $timeLimit, $pointsPerExercise;
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
@@ -11,7 +13,23 @@ class Examshell
     function __construct()
     {
         $this->parse_examshell_json();
+
+        if (!is_dir($this->assignmentsDirectoryPath)) {
+            @system("mkdir " .$this->assignmentsDirectoryPath);
+        } else {
+            @system("clear");
+            echo "Folder ./rendu already exists : do you want to delete its contents ? [y/n]" . PHP_EOL;
+            $delete = trim(fgets(STDIN));
+            if ($delete == "y") {
+                @system("rm -rf ./rendu && mkdir " . $this->assignmentsDirectoryPath);
+                echo "Folder ./rendu contents succesfully deleted !" . PHP_EOL . PHP_EOL;
+                echo "Press any key to continue..." . PHP_EOL;
+                fgets(STDIN);
+            }
+        }
+
         $this->display_welcome_message();
+
         $this->userInput = fgets(STDIN);
         if ($this->userInput == "\n") {
             $this->startTime = time();
@@ -32,10 +50,9 @@ class Examshell
         $currentExerciseInstructions = $currentExerciseArray["instructions"];
         $currentExerciseShellInstructions = $currentExerciseArray["shellInstructions"] . "Press Enter when done, or type /help to display a list of available commands" . PHP_EOL;
 
-        if (!is_dir("./" . $currentExerciseArray["name"])) {
-            @system("mkdir " . $currentExerciseArray["name"]);
-            @system("touch " . $currentExerciseName . "/" . $currentExerciseName . ".txt");
-            file_put_contents("./" . $currentExerciseName . "/" . $currentExerciseName . ".txt", $currentExerciseInstructions);
+        if (!is_dir($this->assignmentsDirectoryPath . $currentExerciseArray["name"])) {
+            @system("mkdir ". $this->assignmentsDirectoryPath . $currentExerciseName);
+            file_put_contents($this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".txt", $currentExerciseInstructions);
         }
 
         echo $currentExerciseShellInstructions;
@@ -47,21 +64,32 @@ class Examshell
         $currentExerciseName = $currentExerciseArray["name"];
         $currentExerciseType = $currentExerciseArray["type"];
         $currentExerciseExpectedOutput = $currentExerciseArray["expectedOutput"];
+        $currentExerciseArgs = $currentExerciseArray["argv"];
         $result = null;
 
         try {
-            if (file_exists("./" . $currentExerciseName . "/" . $currentExerciseName . ".c")) {
+            if (file_exists($this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c")) {
                 if ($currentExerciseType == "program") {
-                    @system("gcc ./" . $currentExerciseName . "/" . $currentExerciseName . ".c 2>./errorlog.txt");
+                    @system("gcc " . $this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c 2>./errorlog.txt");
                 } else {
-                    @system("gcc ./" . $currentExerciseName . "/" . $currentExerciseName . ".c ./.mains/" . $currentExerciseName . "_main.c 2>./errorlog.txt");
+                    @system("gcc ". $this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c " . $this->mainsDirectoryPath . $currentExerciseName . "_main.c 2>./errorlog.txt");
                 }
                 if (file_exists("./a.out")) {
-                    echo "a/out" . PHP_EOL;
-                    @system("./a.out > result.yo");
+                    if ($currentExerciseArgs == null) {
+                        @system("./a.out > result.yo");
+                    } else {
+                        $binaryOutputString = "";
+                        foreach ($currentExerciseArgs as $key => $value) {
+                            $binaryOutputString .= "./a.out " . $value . " >> result.yo";
+                            if ($key < (count($currentExerciseArgs) - 1)) {
+                                $binaryOutputString .= " && ";
+                            }
+                        }
+                        @system($binaryOutputString);
+                    }
                     @system("rm ./a.out");
-                    $result = fread(fopen("./result.yo", "r"), filesize("./result.yo"));
-                    @system("rm result.yo");
+                    $result = fread(fopen("./result.yo", "r"), 1000000);
+                    @system("rm ./result.yo");
                 } else {
                     throw new Exception("compilation error");
                 }
@@ -69,9 +97,10 @@ class Examshell
                 throw new Exception(".c File not found in requested directory !");
             }
         } catch (\Throwable $th) {
-            // echo "\033[0;31mERROR : .c File not found in directory !\033[0m" . PHP_EOL;
             echo "\033[0;31mERROR : " . $th->getMessage() . "\033[0m" . PHP_EOL;
         }
+        echo "result = "  . $result . PHP_EOL;
+        echo "expected = " . $currentExerciseExpectedOutput . PHP_EOL;
 
         if ($result == $currentExerciseExpectedOutput) {
             if (file_exists("./errorlog.txt")) {
@@ -95,9 +124,7 @@ class Examshell
     private function check_user_input()
     {
         if ($this->userInput == "") {
-            // $success = false;
             $success = $this->compile_and_check();
-            // echo "success value = " .  $success . PHP_EOL;
             if ($success == true) {
                 $this->currentExercise++;
                 $this->score += $this->pointsPerExercise;
@@ -120,7 +147,7 @@ class Examshell
         } else if ($this->userInput == "/score") {
             echo "You current score is " . round($this->score, 1) . " / 100" . PHP_EOL;
         } else if ($this->userInput == "/exit") {
-            
+
             echo "You final score is " . round($this->score, 1) . " / 100 !" . PHP_EOL . "Don't hesitate to send feedback and/or bugreports by mail at gcamuzea42@gmail.com !" . PHP_EOL;
             die;
         }

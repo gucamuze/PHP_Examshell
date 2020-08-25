@@ -29,5 +29,4 @@ int main() {
 
     write(1, a, 1);
     write(1, b, 1);
-
 }

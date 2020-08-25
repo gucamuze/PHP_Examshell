@@ -10,11 +10,11 @@ class Exercise
     {
         $this->name = $exerciseName;
 
-        if (strpos($exerciseName, "ft_") !== false) {
+        if (strpos($exerciseName, "hc_") !== false) {
             $this->type =  "function";
         } else $this->type = "program";
 
-        $this->shellInstructions = "New excercise : " . $exerciseName . " !\nDirectory " . $exerciseName . " succesfuly created\n";
+        $this->shellInstructions = "New excercise : " . $exerciseName . " !\nDirectory ./rendu/" . $exerciseName . " succesfuly created\n";
 
         $subjectPath = $exercisePath . "/subject.en.txt";
         $this->instructions = fread(fopen($subjectPath, 'r'), filesize($subjectPath));
@@ -43,6 +43,7 @@ class JsonGenerator
     function __construct()
     {
         $tempExercisesList = array_values(array_diff(scandir($this->ExercisesDirectoryPath), [".", ".."]));
+        shuffle($tempExercisesList);
         $this->build_help();
         $this->build_exercises($tempExercisesList);
         $this->build_final_json();

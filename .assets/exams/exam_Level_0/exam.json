@@ -5,73 +5,102 @@
             "name": "aff_a",
             "type": "program",
             "instructions": "Assignment name  : aff_a\nExpected files   : aff_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that takes a string, and displays the first 'a' character it\nencounters in it, followed by a newline. If there are no 'a' characters in the\nstring, the program just writes a newline. If the number of parameters is not\n1, the program displays 'a' followed by a newline.\n\nExample:\n\n$> ./aff_a \"abc\" | cat -e\na$\n$> ./aff_a \"dubO a POIL\" | cat -e\na$\n$> ./aff_a \"zz sent le poney\" | cat -e\n$\n$> ./aff_a | cat -e\na$\n",
-            "shellInstructions": "New excercise : aff_a !\nDirectory aff_a succesfuly created\n"
+            "shellInstructions": "New excercise : aff_a !\nDirectory aff_a succesfuly created\n",
+            "expectedOutput": "a\n",
+            "argv": false
         },
         "1": {
             "name": "aff_first_param",
             "type": "program",
             "instructions": "Assignment name  : aff_first_param\nExpected files   : aff_first_param.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that takes strings as arguments, and displays its first\nargument followed by a \\n.\n\nIf the number of arguments is less than 1, the program displays \\n.\n\nExample:\n\n$> ./aff_first_param vincent mit \"l'ane\" dans un pre et \"s'en\" vint | cat -e\nvincent$\n$> ./aff_first_param \"j'aime le fromage de chevre\" | cat -e\nj'aime le fromage de chevre$\n$> ./aff_first_param\n$\n",
-            "shellInstructions": "New excercise : aff_first_param !\nDirectory aff_first_param succesfuly created\n"
+            "shellInstructions": "New excercise : aff_first_param !\nDirectory aff_first_param succesfuly created\n",
+            "expectedOutput": "coucou\ncoucou salut hello\n",
+            "argv": {
+                "0": "coucou salut hello",
+                "1": "\"coucou salut hello\" \"bonjour\" \"caca\""
+            }
         },
         "2": {
             "name": "aff_last_param",
             "type": "program",
             "instructions": "Assignment name  : aff_last_param\nExpected files   : aff_last_param.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that takes strings as arguments, and displays its last\nargument followed by a newline.\n\nIf the number of arguments is less than 1, the program displays a newline.\n\nExamples:\n\n$> ./aff_last_param \"zaz\" \"mange\" \"des\" \"chats\" | cat -e\nchats$\n$> ./aff_last_param \"j'aime le savon\" | cat -e\nj'aime le savon$\n$> ./aff_last_param\n$\n",
-            "shellInstructions": "New excercise : aff_last_param !\nDirectory aff_last_param succesfuly created\n"
+            "shellInstructions": "New excercise : aff_last_param !\nDirectory aff_last_param succesfuly created\n",
+            "expectedOutput": "hello\ncaca\n",
+            "argv": {
+                "0": "coucou salut hello",
+                "1": "\"coucou salut hello\" \"bonjour\" \"caca\""
+            }
         },
         "3": {
             "name": "aff_z",
             "type": "program",
             "instructions": "Assignment name  : aff_z\nExpected files   : aff_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that takes a string, and displays the first 'z'\ncharacter it encounters in it, followed by a newline. If there are no\n'z' characters in the string, the program writes 'z' followed\nby a newline. If the number of parameters is not 1, the program displays\n'z' followed by a newline.\n\nExample:\n\n$> ./aff_z \"abc\" | cat -e\nz$\n$> ./aff_z \"dubO a POIL\" | cat -e\nz$\n$> ./aff_z \"zaz sent le poney\" | cat -e\nz$\n$> ./aff_z | cat -e\nz$\n",
-            "shellInstructions": "New excercise : aff_z !\nDirectory aff_z succesfuly created\n"
+            "shellInstructions": "New excercise : aff_z !\nDirectory aff_z succesfuly created\n",
+            "expectedOutput": "z\n",
+            "argv": false
         },
         "4": {
             "name": "ft_countdown",
             "type": "function",
             "instructions": "Assignment name  : ft_countdown\nExpected files   : ft_countdown.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays all digits in descending order, followed by a\nnewline.\n\nExample:\n$> ./ft_countdown | cat -e\n9876543210$\n$>\n",
-            "shellInstructions": "New excercise : ft_countdown !\nDirectory ft_countdown succesfuly created\n"
+            "shellInstructions": "New excercise : ft_countdown !\nDirectory ft_countdown succesfuly created\n",
+            "expectedOutput": "9876543210\n",
+            "argv": false
         },
         "5": {
             "name": "ft_print_numbers",
             "type": "function",
             "instructions": "Assignment name  : ft_print_numbers\nExpected files   : ft_print_numbers.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a function that displays all digits in ascending order.\n\nYour function must be declared as follows:\n\nvoid\tft_print_numbers(void);\n\n",
-            "shellInstructions": "New excercise : ft_print_numbers !\nDirectory ft_print_numbers succesfuly created\n"
+            "shellInstructions": "New excercise : ft_print_numbers !\nDirectory ft_print_numbers succesfuly created\n",
+            "expectedOutput": "0123456789\n",
+            "argv": false
         },
         "6": {
             "name": "hello",
             "type": "program",
             "instructions": "Assignment name  : hello\nExpected files   : hello.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays \"Hello World!\" followed by a \\n.\n\nExample:\n\n$>./hello\nHello World!\n$>./hello | cat -e\nHello World!$\n$>\n",
-            "shellInstructions": "New excercise : hello !\nDirectory hello succesfuly created\n"
+            "shellInstructions": "New excercise : hello !\nDirectory hello succesfuly created\n",
+            "expectedOutput": "Hello World!\n",
+            "argv": false
         },
         "7": {
             "name": "maff_alpha",
             "type": "program",
             "instructions": "Assignment name  : maff_alpha\nExpected files   : maff_alpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays the alphabet, with even letters in uppercase, and\nodd letters in lowercase, followed by a newline.\n\nExample:\n\n$> ./maff_alpha | cat -e\naBcDeFgHiJkLmNoPqRsTuVwXyZ$\n",
-            "shellInstructions": "New excercise : maff_alpha !\nDirectory maff_alpha succesfuly created\n"
+            "shellInstructions": "New excercise : maff_alpha !\nDirectory maff_alpha succesfuly created\n",
+            "expectedOutput": "aBcDeFgHiJkLmNoPqRsTuVwXyZ\n",
+            "argv": false
         },
         "8": {
             "name": "maff_revalpha",
             "type": "program",
             "instructions": "Assignment name  : maff_revalpha\nExpected files   : maff_revalpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays the alphabet in reverse, with even letters in\nuppercase, and odd letters in lowercase, followed by a newline.\n\nExample:\n\n$> ./maff_revalpha | cat -e\nzYxWvUtSrQpOnMlKjIhGfEdCbA$\n",
-            "shellInstructions": "New excercise : maff_revalpha !\nDirectory maff_revalpha succesfuly created\n"
+            "shellInstructions": "New excercise : maff_revalpha !\nDirectory maff_revalpha succesfuly created\n",
+            "expectedOutput": "zYxWvUtSrQpOnMlKjIhGfEdCbA\n",
+            "argv": false
         },
         "9": {
             "name": "only_a",
             "type": "program",
             "instructions": "Assignment name  : only_a\nExpected files   : only_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays an 'a' character on the standard output.\n",
-            "shellInstructions": "New excercise : only_a !\nDirectory only_a succesfuly created\n"
+            "shellInstructions": "New excercise : only_a !\nDirectory only_a succesfuly created\n",
+            "expectedOutput": "a",
+            "argv": false
         },
         "10": {
             "name": "only_z",
             "type": "program",
             "instructions": "Assignment name  : only_z\nExpected files   : only_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\nWrite a program that displays a 'z' character on the standard output.\n",
-            "shellInstructions": "New excercise : only_z !\nDirectory only_z succesfuly created\n"
+            "shellInstructions": "New excercise : only_z !\nDirectory only_z succesfuly created\n",
+            "expectedOutput": "z",
+            "argv": false
         }
     },
     "help": {
         "/help": "Displays this (duh)",
         "/time": "Displays remaining time",
         "/current": "Displays the number of the current exercise",
-        "/score": "Displays the current score"
+        "/score": "Displays the current score",
+        "/exit": "Ends and exits the current exam"
     }
 }

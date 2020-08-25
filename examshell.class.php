@@ -2,6 +2,7 @@
 
 class Examshell
 {
+    private $examJsonPath = "./.assets/exams/exam_template/";
     private $userInput, $startTime, $timeLimit, $pointsPerExercise;
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
@@ -118,14 +119,18 @@ class Examshell
             echo "You are currently on exercise number " . $this->currentExercise . " : " . $this->exercises[$this->currentExercise]["name"] . PHP_EOL;
         } else if ($this->userInput == "/score") {
             echo "You current score is " . round($this->score, 1) . " / 100" . PHP_EOL;
+        } else if ($this->userInput == "/exit") {
+            
+            echo "You final score is " . round($this->score, 1) . " / 100 !" . PHP_EOL . "Don't hesitate to send feedback and/or bugreports by mail at gcamuzea42@gmail.com !" . PHP_EOL;
+            die;
         }
     }
 
     private function parse_examshell_json()
     {
         try {
-            if (file_exists("./.assets/exam.json")) {
-                $json = fread(fopen("./.assets/exam.json", "r"), filesize("./.assets/exam.json"));
+            if (file_exists($this->examJsonPath . "exam.json")) {
+                $json = fread(fopen($this->examJsonPath . "exam.json", "r"), filesize($this->examJsonPath . "exam.json"));
                 $arrayFromJson = json_decode($json, true);
                 $this->timeLimit = (int) $arrayFromJson["timeLimit"];
                 $this->exercises = $arrayFromJson["exercises"];

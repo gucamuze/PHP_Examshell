@@ -27,6 +27,7 @@
         "/help": "Displays this (duh)",
         "/time": "Displays remaining time",
         "/current": "Displays the number of the current exercise",
-        "/score": "Displays the current score"
+        "/score": "Displays the current score",
+        "/exit": "Ends and exits the current exam"
     }
 }

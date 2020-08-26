@@ -9,11 +9,26 @@ class Examshell
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
     private $on = true;
+    private $subjectLanguage = "en";
 
     function __construct()
-    {
-        $this->parse_examshell_json();
+    {        
+        $this->startup();
 
+        $this->parse_examshell_json();
+        
+        $this->display_welcome_message();
+
+        $this->userInput = fgets(STDIN);
+        if ($this->userInput == "\n") {
+            $this->startTime = time();
+            $this->start_exercise();
+        }
+    }
+
+    private function startup()
+    {
+        // Check for existing /rendu folder //
         if (!is_dir($this->assignmentsDirectoryPath)) {
             @system("mkdir " .$this->assignmentsDirectoryPath);
         } else {
@@ -27,14 +42,17 @@ class Examshell
                 fgets(STDIN);
             }
         }
-
-        $this->display_welcome_message();
-
-        $this->userInput = fgets(STDIN);
-        if ($this->userInput == "\n") {
-            $this->startTime = time();
-            $this->start_exercise();
+        // Subject language //
+        echo "Please select a language for subjects : type [fr/en] (defaults to [en])" . PHP_EOL;
+        $lang = trim(fgets(STDIN));
+        if ($lang == 'fr'){
+            $this->subjectLanguage = "fr";
         }
+        echo "Subjects language set on [".$this->subjectLanguage."]" . PHP_EOL;
+        echo "Press any key to continue..." . PHP_EOL;
+        fgets(STDIN);
+
+        @system("php ./.jsongenerator/jsongenerator.php " . $this->subjectLanguage);
     }
 
     private function start_exercise()
@@ -147,7 +165,6 @@ class Examshell
         } else if ($this->userInput == "/score") {
             echo "You current score is " . round($this->score, 1) . " / 100" . PHP_EOL;
         } else if ($this->userInput == "/exit") {
-
             echo "You final score is " . round($this->score, 1) . " / 100 !" . PHP_EOL . "Don't hesitate to send feedback and/or bugreports by mail at gcamuzea42@gmail.com !" . PHP_EOL;
             die;
         }

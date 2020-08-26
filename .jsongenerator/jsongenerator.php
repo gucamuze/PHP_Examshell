@@ -6,7 +6,7 @@ class Exercise
     public $expectedOutput = "";
     public $argv = false;
 
-    function __construct($exerciseName, $exercisePath)
+    function __construct($exerciseName, $exercisePath, $subjectLanguage)
     {
         $this->name = $exerciseName;
 
@@ -16,7 +16,7 @@ class Exercise
 
         $this->shellInstructions = "New excercise : " . $exerciseName . " !\nDirectory ./rendu/" . $exerciseName . " succesfuly created\n";
 
-        $subjectPath = $exercisePath . "/subject.en.txt";
+        $subjectPath = $exercisePath . "/subject." . $subjectLanguage . ".txt";
         $this->instructions = fread(fopen($subjectPath, 'r'), filesize($subjectPath));
 
         $expectedOutputPath = $exercisePath . "/expectedOutput.txt";
@@ -25,7 +25,7 @@ class Exercise
         if (file_exists($exercisePath . "/args")) {
             $args = fread(fopen($exercisePath . "/args", 'r'), filesize($exercisePath . "/args"));
             $argsArray = explode("\n", $args);
-            print_r($argsArray);
+            // print_r($argsArray);
             $this->argv = $argsArray;
         }
     }
@@ -36,16 +36,16 @@ class JsonGenerator
     private $EncodeThisMofo = [];
     private $ExercisesList = [];
     private $helpSection = [];
-    private $ExercisesDirectoryPath = "./Level_0";
-    private $FinalJsonDirectoryPath = "../.assets/exams/exam_Level_0";
+    private $ExercisesDirectoryPath = "./.jsongenerator/Level_0";
+    private $FinalJsonDirectoryPath = "./.assets/exams/exam_Level_0";
     private $timeLimit = 14400;
 
-    function __construct()
+    function __construct($subjectLanguage)
     {
         $tempExercisesList = array_values(array_diff(scandir($this->ExercisesDirectoryPath), [".", ".."]));
         shuffle($tempExercisesList);
         $this->build_help();
-        $this->build_exercises($tempExercisesList);
+        $this->build_exercises($tempExercisesList, $subjectLanguage);
         $this->build_final_json();
     }
 
@@ -56,11 +56,11 @@ class JsonGenerator
         file_put_contents($this->FinalJsonDirectoryPath . "/exam.json", $this->EncodeThisMofo);
     }
 
-    private function build_exercises($tempExercisesList)
+    private function build_exercises($tempExercisesList, $subjectLanguage)
     {
         foreach ($tempExercisesList as $value) {
             $exercisePath = $this->ExercisesDirectoryPath . "/" . $value;
-            $exercise = new Exercise($value, $exercisePath);
+            $exercise = new Exercise($value, $exercisePath, $subjectLanguage);
             array_push($this->ExercisesList, $exercise);
         }
     }
@@ -77,4 +77,15 @@ class JsonGenerator
     }
 }
 
-$jsonGenerator = new JsonGenerator();
+$subjectLanguage = "en";
+
+if (isset($argv[1])) {
+    // echo "coucou";
+    if ($argv[1] == "fr") {
+        // echo "salut";
+        $subjectLanguage = "fr";
+    }
+}
+
+echo "lang = " . $subjectLanguage;
+$jsonGenerator = new JsonGenerator($subjectLanguage);

@@ -5,6 +5,7 @@ class Examshell
     private $examJsonPath = "./.assets/exams/exam_Level_";
     private $mainsDirectoryPath = "./.mains/Level_";
     private $assignmentsDirectoryPath = "./rendu/";
+    private $exercicesDirectoryPathInJsongeneratorFolder = "./.jsongenerator/Level_";
     private $userInput, $startTime, $timeLimit, $pointsPerExercise;
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
@@ -14,17 +15,15 @@ class Examshell
 
     function __construct()
     {
-        $this->startup();
-
-        $this->parse_examshell_json();
-
-        $this->display_welcome_message();
-
+        @system("clear");
+        echo "Welcome to PHP Examshell 00 ! Please read the README.md file before continuing" . PHP_EOL . "Press any key to begin..." . PHP_EOL;
         $this->userInput = fgets(STDIN);
-        if ($this->userInput == "\n") {
-            $this->startTime = time();
-            $this->start_exercise();
-        }
+        
+        $this->startup();
+        $this->parse_examshell_json();
+        $this->display_welcome_message();
+        $this->startTime = time();
+        $this->start_exercise();
     }
 
     private function startup()
@@ -44,6 +43,12 @@ class Examshell
             }
         }
 
+        $this->select_and_set_exam_level();
+        $this->check_and_generate_json();
+    }
+
+    private function select_and_set_exam_level()
+    {
         echo "Please select a level for subjects [0, 1]" . PHP_EOL;
         $level = trim(fgets(STDIN));
         if ($level == '0' || $level == '1') {
@@ -51,9 +56,13 @@ class Examshell
         }
         $this->examJsonPath .= $this->examLevel . "/";
         $this->mainsDirectoryPath .= $this->examLevel . "/";
+        $this->exercicesDirectoryPathInJsongeneratorFolder .= $this->examLevel . "/";
 
         echo "Exam level set on [" . $this->examLevel . "]" . PHP_EOL . PHP_EOL;
+    }
 
+    private function check_and_generate_json()
+    {
         // New exam.json generation //
         if (file_exists($this->examJsonPath . "exam.json")) {
             echo "Generate a new examshell ? [y/n]" . PHP_EOL;
@@ -63,9 +72,6 @@ class Examshell
             $new = "y";
         }
         if ($new == "y") {
-            // echo "Press any key to continue..." . PHP_EOL;
-            // fgets(STDIN);
-
             echo "Please select a language for subjects : type [fr/en] (defaults to [en])" . PHP_EOL;
             $lang = trim(fgets(STDIN));
             if ($lang == 'fr') {
@@ -80,7 +86,6 @@ class Examshell
 
             @system("php ./.jsongenerator/jsongenerator.php " . $this->subjectLanguage . " " . $this->examLevel);
         }
-        // Defaults to level 0
     }
 
     private function start_exercise()
@@ -135,7 +140,6 @@ class Examshell
                     }
                     @system("rm ./a.out");
                     $result = fread(fopen("./result.yo", "r"), 1000000);
-                    @system("rm ./result.yo");
                 } else {
                     throw new Exception("compilation error");
                 }
@@ -145,17 +149,34 @@ class Examshell
         } catch (\Throwable $th) {
             echo "\033[0;31mERROR : " . $th->getMessage() . "\033[0m" . PHP_EOL;
         }
-        echo "result = "  . $result . PHP_EOL;
-        echo "expected = " . $currentExerciseExpectedOutput . PHP_EOL;
 
+        // Trace creation //
+        if (!is_dir("./traces/" . $currentExerciseName)) {
+            @system("mkdir " . "./traces/" . $currentExerciseName);
+        }
+        if (file_exists("./result.yo")) {
+            @system("diff -urs ./result.yo " . $this->exercicesDirectoryPathInJsongeneratorFolder . $currentExerciseName . "/expectedOutput.txt > ./traces/" . $currentExerciseName . "/" . $currentExerciseName . ".trace");
+            @system("rm ./result.yo");
+        } else {
+            if (file_exists("./errorlog.txt")) {
+                @system("cat ./errorlog.txt > ./traces/" . $currentExerciseName . "/" . $currentExerciseName . ".trace");
+                @system("rm ./errorlog.txt");
+            }
+        }
+
+        // Output check //
         if ($result == $currentExerciseExpectedOutput) {
             if (file_exists("./errorlog.txt")) {
                 @system("rm ./errorlog.txt");
             }
             return true;
         } else {
-            echo "\033[0;31mERROR : expected output not matching results !\033[0m" . PHP_EOL;
+            if (file_exists("./traces/" . $currentExerciseName . "/" . $currentExerciseName . ".trace")){
+                echo "\033[0;31mERROR : expected output not matching results !\033[0m" . PHP_EOL;
+                echo "\033[0;31mTrace generated in /traces/" . $currentExerciseName . "\033[0m" . PHP_EOL;
+            }
             echo "\033[0;31m>>>>> FAILURE :x Try again !\033[0m" . PHP_EOL . "Press enter when you're done, or enter /help to see available commands" . PHP_EOL;
+            return false;
         }
     }
 
@@ -222,6 +243,5 @@ class Examshell
         @system("clear");
         $logo = fread(fopen("./.assets/logo.asciiart", "r"), filesize("./.assets/logo.asciiart"));
         echo $logo . PHP_EOL;
-        echo "Welcome to PHP Examshell 00 ! Please read the README.md file before continuing" . PHP_EOL . "Press enter to begin..." . PHP_EOL;
     }
 }

@@ -2,10 +2,10 @@
     "timeLimit": 14400,
     "exercises": {
         "0": {
-            "name": "first_word",
+            "name": "rotone",
             "type": "program",
-            "instructions": "Assignment name  : first_word\nExpected files   : first_word.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend une cha\u00eene de caract\u00e8res en param\u00e8tre, et qui\naffiche le premier mot de cette cha\u00eene, suivi d'un '\\n'.\n\nOn appelle \"mot\" une portion de cha\u00eene de caract\u00e8res d\u00e9limit\u00e9e soit par des\nespaces et/ou des tabulations, soit par le d\u00e9but / fin de la cha\u00eene.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, ou s'il n'y a aucun mot\n\u00e0 afficher, le programme affiche '\\n'.\n\nExemple:\n\n$> ./first_word \"FOR PONY\" | cat -e\nFOR$\n$> ./first_word \"this        ...       is sparta, then again, maybe    not\" | cat -e\nthis$\n$> ./first_word \"   \" | cat -e\n$\n$> ./first_word \"a\" \"b\" | cat -e\n$\n$> ./first_word \"  lorem,ipsum  \" | cat -e\nlorem,ipsum$\n$>\n",
-            "shellInstructions": "New excercise : first_word !\nDirectory ./rendu/first_word succesfuly created\n",
+            "instructions": "Assignment name  : rotone\nExpected files   : rotone.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme nomm\u00e9 rotone, qui prend en param\u00e8tre une cha\u00eene de\ncaract\u00e8res, et qui affiche cette cha\u00eene en rempla\u00e7ant chaque caract\u00e8re\nalphab\u00e9tique par le caract\u00e8re suivant dans l'ordre alphab\u00e9tique.\n\n'z' devient 'a' et 'Z' devient 'A'. Les majuscules restent des majuscules, les\nminuscules restent des minuscules.\n\nL'affichage se termine toujours par un retour \u00e0 la ligne.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemple:\n\n$>./rotone \"abc\"\nbcd\n$>./rotone \"Les stagiaires du staff ne sentent pas toujours tres bon.\" | cat -e\nMft tubhjbjsft ev tubgg of tfoufou qbt upvkpvst usft cpo.$\n$>./rotone \"AkjhZ zLKIJz , 23y \" | cat -e\nBlkiA aMLJKa , 23z $\n$>./rotone | cat -e\n$\n$>\n$>./rotone \"\" | cat -e\n$\n$>\n",
+            "shellInstructions": "New excercise : rotone !\nDirectory ./rendu/rotone succesfuly created\n",
             "expectedOutput": "dummy output",
             "argv": false
         },
@@ -18,22 +18,14 @@
             "argv": false
         },
         "2": {
-            "name": "rot_13",
+            "name": "ft_swap",
             "type": "program",
-            "instructions": "Assignment name  : rot_13\nExpected files   : rot_13.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme nomm\u00e9 rotone, qui prend en param\u00e8tre une cha\u00eene de\ncaract\u00e8res, et qui affiche cette cha\u00eene en rempla\u00e7ant chaque caract\u00e8re\nalphab\u00e9tique par le caract\u00e8re situ\u00e9 13 caract\u00e8res plus loin dans l'ordre\nalphab\u00e9tique.\n\n'z' devient 'm' et 'Z' devient 'M'. Les majuscules restent des majuscules, les\nminuscules restent des minuscules.\n\nL'affichage se termine toujours par un retour \u00e0 la ligne.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemple:\n\n$>./rot_13 \"abc\"\nnop\n$>./rot_13 \"My horse is Amazing.\" | cat -e\nZl ubefr vf Nznmvat.$\n$>./rot_13 \"AkjhZ zLKIJz , 23y \" | cat -e\nNxwuM mYXVWm , 23l $\n$>./rot_13 | cat -e\n$\n$>\n$>./rot_13 \"\" | cat -e\n$\n$>\n",
-            "shellInstructions": "New excercise : rot_13 !\nDirectory ./rendu/rot_13 succesfuly created\n",
+            "instructions": "Assignment name  : ft_swap\nExpected files   : ft_swap.c\nAllowed functions: \n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui \u00e9change le contenu de deux entiers dont les adresses\nsont pass\u00e9es en param\u00eatres.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nvoid\tft_swap(int *a, int *b);\n",
+            "shellInstructions": "New excercise : ft_swap !\nDirectory ./rendu/ft_swap succesfuly created\n",
             "expectedOutput": "dummy output",
             "argv": false
         },
         "3": {
-            "name": "rotone",
-            "type": "program",
-            "instructions": "Assignment name  : rotone\nExpected files   : rotone.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme nomm\u00e9 rotone, qui prend en param\u00e8tre une cha\u00eene de\ncaract\u00e8res, et qui affiche cette cha\u00eene en rempla\u00e7ant chaque caract\u00e8re\nalphab\u00e9tique par le caract\u00e8re suivant dans l'ordre alphab\u00e9tique.\n\n'z' devient 'a' et 'Z' devient 'A'. Les majuscules restent des majuscules, les\nminuscules restent des minuscules.\n\nL'affichage se termine toujours par un retour \u00e0 la ligne.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemple:\n\n$>./rotone \"abc\"\nbcd\n$>./rotone \"Les stagiaires du staff ne sentent pas toujours tres bon.\" | cat -e\nMft tubhjbjsft ev tubgg of tfoufou qbt upvkpvst usft cpo.$\n$>./rotone \"AkjhZ zLKIJz , 23y \" | cat -e\nBlkiA aMLJKa , 23z $\n$>./rotone | cat -e\n$\n$>\n$>./rotone \"\" | cat -e\n$\n$>\n",
-            "shellInstructions": "New excercise : rotone !\nDirectory ./rendu/rotone succesfuly created\n",
-            "expectedOutput": "dummy output",
-            "argv": false
-        },
-        "4": {
             "name": "ft_putstr",
             "type": "program",
             "instructions": "Assignment name  : ft_putstr\nExpected files   : ft_putstr.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui affiche une cha\u00eene de caract\u00e8res sur la sortie standard.\n\nLe pointeur pass\u00e9 \u00e0 la fonction est l'adresse du premier caract\u00e8re de la cha\u00eene.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nvoid\tft_putstr(char *str);\n",
@@ -41,11 +33,19 @@
             "expectedOutput": "dummy output",
             "argv": false
         },
-        "5": {
-            "name": "ulstr",
+        "4": {
+            "name": "first_word",
             "type": "program",
-            "instructions": "Assignment name  : ulstr\nExpected files   : ulstr.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend en param\u00e8tre une cha\u00eene de caract\u00e8res, et qui\ntransforme toutes ses minuscules en majuscules et toutes ses majuscules en\nminuscules. Les autres caract\u00e8res restent inchang\u00e9s.\n\nVous devez afficher le r\u00e9sultat suivi d'un '\\n'.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemples :\n\n$>./ulstr \"L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification.\" | cat -e\nl'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.$\n$>./ulstr \"S'enTOuRer dE sECreT eSt uN sIGnE De mAnQuE De coNNaiSSanCe.  \" | cat -e\ns'ENtoUrER De SecREt EsT Un SigNe dE MaNqUe dE COnnAIssANcE.  $\n$>./ulstr \"3:21 Ba  tOut  moUn ki Ka di KE m'en Ka fe fot\" | cat -e\n3:21 bA  ToUT  MOuN KI kA DI ke M'EN kA FE FOT$\n$>./ulstr | cat -e\n$\n",
-            "shellInstructions": "New excercise : ulstr !\nDirectory ./rendu/ulstr succesfuly created\n",
+            "instructions": "Assignment name  : first_word\nExpected files   : first_word.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend une cha\u00eene de caract\u00e8res en param\u00e8tre, et qui\naffiche le premier mot de cette cha\u00eene, suivi d'un '\\n'.\n\nOn appelle \"mot\" une portion de cha\u00eene de caract\u00e8res d\u00e9limit\u00e9e soit par des\nespaces et/ou des tabulations, soit par le d\u00e9but / fin de la cha\u00eene.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, ou s'il n'y a aucun mot\n\u00e0 afficher, le programme affiche '\\n'.\n\nExemple:\n\n$> ./first_word \"FOR PONY\" | cat -e\nFOR$\n$> ./first_word \"this        ...       is sparta, then again, maybe    not\" | cat -e\nthis$\n$> ./first_word \"   \" | cat -e\n$\n$> ./first_word \"a\" \"b\" | cat -e\n$\n$> ./first_word \"  lorem,ipsum  \" | cat -e\nlorem,ipsum$\n$>\n",
+            "shellInstructions": "New excercise : first_word !\nDirectory ./rendu/first_word succesfuly created\n",
+            "expectedOutput": "dummy output",
+            "argv": false
+        },
+        "5": {
+            "name": "ft_strlen",
+            "type": "program",
+            "instructions": "Assignment name  : ft_strlen\nExpected files   : ft_strlen.c\nAllowed functions: \n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui renvoie la longueur d'une cha\u00eene de caract\u00e8res.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nint\tft_strlen(char *str);\n",
+            "shellInstructions": "New excercise : ft_strlen !\nDirectory ./rendu/ft_strlen succesfuly created\n",
             "expectedOutput": "dummy output",
             "argv": false
         },
@@ -58,22 +58,14 @@
             "argv": false
         },
         "7": {
-            "name": "ft_strlen",
+            "name": "ulstr",
             "type": "program",
-            "instructions": "Assignment name  : ft_strlen\nExpected files   : ft_strlen.c\nAllowed functions: \n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui renvoie la longueur d'une cha\u00eene de caract\u00e8res.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nint\tft_strlen(char *str);\n",
-            "shellInstructions": "New excercise : ft_strlen !\nDirectory ./rendu/ft_strlen succesfuly created\n",
+            "instructions": "Assignment name  : ulstr\nExpected files   : ulstr.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend en param\u00e8tre une cha\u00eene de caract\u00e8res, et qui\ntransforme toutes ses minuscules en majuscules et toutes ses majuscules en\nminuscules. Les autres caract\u00e8res restent inchang\u00e9s.\n\nVous devez afficher le r\u00e9sultat suivi d'un '\\n'.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemples :\n\n$>./ulstr \"L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification.\" | cat -e\nl'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.$\n$>./ulstr \"S'enTOuRer dE sECreT eSt uN sIGnE De mAnQuE De coNNaiSSanCe.  \" | cat -e\ns'ENtoUrER De SecREt EsT Un SigNe dE MaNqUe dE COnnAIssANcE.  $\n$>./ulstr \"3:21 Ba  tOut  moUn ki Ka di KE m'en Ka fe fot\" | cat -e\n3:21 bA  ToUT  MOuN KI kA DI ke M'EN kA FE FOT$\n$>./ulstr | cat -e\n$\n",
+            "shellInstructions": "New excercise : ulstr !\nDirectory ./rendu/ulstr succesfuly created\n",
             "expectedOutput": "dummy output",
             "argv": false
         },
         "8": {
-            "name": "ft_countdown",
-            "type": "program",
-            "instructions": "Assignment name  : ft_countdown\nExpected files   : ft_countdown.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche tous les chiffres en ordre descendant, suivis\nd'un newline.\n\nExemple:\n$> ./ft_countdown | cat -e\n9876543210$\n$>\n",
-            "shellInstructions": "New excercise : ft_countdown !\nDirectory ./rendu/ft_countdown succesfuly created\n",
-            "expectedOutput": "dummy output",
-            "argv": false
-        },
-        "9": {
             "name": "search_and_replace",
             "type": "program",
             "instructions": "Assignment name  : search_and_replace\nExpected files   : search_and_replace.c\nAllowed functions: write, exit\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme search_and_replace qui prend 3 arguments, le premier est\nune cha\u00eene dans laquelle on veut remplacer une lettre (2\u00e8me argument) par une\nautre (3\u00e8me argument).\n\nSi le nombre d'arguments n'est pas 3, affiche juste un newline.\n\nSi le deuxi\u00e8me argument n'est pas contenu dans la cha\u00eene, alors le programme ne\nchange rien \u00e0 la cha\u00eene et l'affiche telle quelle suivie d'un newline.\n\nExemples:\n$>./search_and_replace \"Papache est un sabre\" \"a\" \"o\"\nPopoche est un sobre\n$>./search_and_replace \"zaz\" \"art\" \"zul\" | cat -e\n$\n$>./search_and_replace \"zaz\" \"r\" \"u\" | cat -e\nzaz$\n$>./search_and_replace \"jacob\" \"a\" \"b\" \"c\" \"e\" | cat -e\n$\n$>./search_and_replace \"ZoZ eT Dovid oiME le METol.\" \"o\" \"a\" | cat -e\nZaZ eT David aiME le METal.$\n$>./search_and_replace \"wNcOre Un ExEmPle Pas Facilw a Ecrirw \" \"w\" \"e\" | cat -e\neNcOre Un ExEmPle Pas Facile a Ecrire $\n",
@@ -81,19 +73,27 @@
             "expectedOutput": "dummy output",
             "argv": false
         },
-        "10": {
-            "name": "ft_swap",
-            "type": "program",
-            "instructions": "Assignment name  : ft_swap\nExpected files   : ft_swap.c\nAllowed functions: \n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui \u00e9change le contenu de deux entiers dont les adresses\nsont pass\u00e9es en param\u00eatres.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nvoid\tft_swap(int *a, int *b);\n",
-            "shellInstructions": "New excercise : ft_swap !\nDirectory ./rendu/ft_swap succesfuly created\n",
-            "expectedOutput": "dummy output",
-            "argv": false
-        },
-        "11": {
+        "9": {
             "name": "repeat_alpha",
             "type": "program",
             "instructions": "Assignment name  : repeat_alpha\nExpected files   : repeat_alpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme repeat_alpha qui prend une cha\u00eene et l'affiche en r\u00e9p\u00e9tant\nchaque caract\u00e8re alphab\u00e9tique autant de fois que son index dans l'alphabet,\nsuivie d'un newline.\n\n'a' devient 'a', 'b' devient 'bb', 'e' devient 'eeeee', etc...\n\nLa casse ne change pas.\n\nSi le nombre d'arguments n'est pas 1, affiche juste un newline.\n\nExemples:\n\n$>./repeat_alpha \"abc\"\nabbccc\n$>./repeat_alpha \"Alex.\" | cat -e\nAlllllllllllleeeeexxxxxxxxxxxxxxxxxxxxxxxx.$\n$>./repeat_alpha \"abacadaba 42!\" | cat -e\nabbacccaddddabba 42!$\n$>./repeat_alpha | cat -e\n$\n$>\n$>./repeat_alpha \"\" | cat -e\n$\n$>\n",
             "shellInstructions": "New excercise : repeat_alpha !\nDirectory ./rendu/repeat_alpha succesfuly created\n",
+            "expectedOutput": "dummy output",
+            "argv": false
+        },
+        "10": {
+            "name": "rot_13",
+            "type": "program",
+            "instructions": "Assignment name  : rot_13\nExpected files   : rot_13.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme nomm\u00e9 rotone, qui prend en param\u00e8tre une cha\u00eene de\ncaract\u00e8res, et qui affiche cette cha\u00eene en rempla\u00e7ant chaque caract\u00e8re\nalphab\u00e9tique par le caract\u00e8re situ\u00e9 13 caract\u00e8res plus loin dans l'ordre\nalphab\u00e9tique.\n\n'z' devient 'm' et 'Z' devient 'M'. Les majuscules restent des majuscules, les\nminuscules restent des minuscules.\n\nL'affichage se termine toujours par un retour \u00e0 la ligne.\n\nSi le nombre de param\u00e8tres transmis est diff\u00e9rent de 1, le programme affiche\n'\\n'.\n\nExemple:\n\n$>./rot_13 \"abc\"\nnop\n$>./rot_13 \"My horse is Amazing.\" | cat -e\nZl ubefr vf Nznmvat.$\n$>./rot_13 \"AkjhZ zLKIJz , 23y \" | cat -e\nNxwuM mYXVWm , 23l $\n$>./rot_13 | cat -e\n$\n$>\n$>./rot_13 \"\" | cat -e\n$\n$>\n",
+            "shellInstructions": "New excercise : rot_13 !\nDirectory ./rendu/rot_13 succesfuly created\n",
+            "expectedOutput": "dummy output",
+            "argv": false
+        },
+        "11": {
+            "name": "ft_countdown",
+            "type": "program",
+            "instructions": "Assignment name  : ft_countdown\nExpected files   : ft_countdown.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche tous les chiffres en ordre descendant, suivis\nd'un newline.\n\nExemple:\n$> ./ft_countdown | cat -e\n9876543210$\n$>\n",
+            "shellInstructions": "New excercise : ft_countdown !\nDirectory ./rendu/ft_countdown succesfuly created\n",
             "expectedOutput": "dummy output",
             "argv": false
         }

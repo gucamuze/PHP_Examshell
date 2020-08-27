@@ -2,33 +2,14 @@
     "timeLimit": 14400,
     "exercises": {
         "0": {
-            "name": "hello",
+            "name": "only_z",
             "type": "program",
-            "instructions": "Assignment name  : hello\nExpected files   : hello.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche \"Hello World!\" suivi d'un \\n.\n\nExemple:\n\n$>./hello\nHello World!\n$>./hello | cat -e\nHello World!$\n$>\n",
-            "shellInstructions": "New excercise : hello !\nDirectory ./rendu/hello succesfuly created\n",
-            "expectedOutput": "Hello World!\n",
+            "instructions": "Assignment name  : only_z\nExpected files   : only_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche un caract\u00e8re 'z' sur la sortie standard.\n",
+            "shellInstructions": "New excercise : only_z !\nDirectory ./rendu/only_z succesfuly created\n",
+            "expectedOutput": "z",
             "argv": false
         },
         "1": {
-            "name": "maff_revalpha",
-            "type": "program",
-            "instructions": "Assignment name  : maff_revalpha\nExpected files   : maff_revalpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche l'alphabet \u00e0 l'envers, une lettre sur 2 en\nminuscule, et le reste en majuscule (Voir l'exemple), suivi d'un '\\n'.\n\nExemple:\n\n$> ./maff_revalpha | cat -e\nzYxWvUtSrQpOnMlKjIhGfEdCbA$\n",
-            "shellInstructions": "New excercise : maff_revalpha !\nDirectory ./rendu/maff_revalpha succesfuly created\n",
-            "expectedOutput": "zYxWvUtSrQpOnMlKjIhGfEdCbA\n",
-            "argv": false
-        },
-        "2": {
-            "name": "aff_last_param",
-            "type": "program",
-            "instructions": "Assignment name  : aff_last_param\nExpected files   : aff_last_param.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend des cha\u00eenes, et affiche son dernier argument suivi d'un newline.\n\nS'il y a moins d'un argument, le programme affiche juste un newline.\n\nExemples:\n\n$> ./aff_last_param \"zaz\" \"mange\" \"des\" \"chats\" | cat -e\nchats$\n$> ./aff_last_param \"j'aime le savon\" | cat -e\nj'aime le savon$\n$> ./aff_last_param\n$\n",
-            "shellInstructions": "New excercise : aff_last_param !\nDirectory ./rendu/aff_last_param succesfuly created\n",
-            "expectedOutput": "hello\ncaca\n",
-            "argv": {
-                "0": "coucou salut hello",
-                "1": "\"coucou salut hello\" \"bonjour\" \"caca\""
-            }
-        },
-        "3": {
             "name": "aff_first_param",
             "type": "program",
             "instructions": "Assignment name  : aff_first_param\nExpected files   : aff_first_param.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend en param\u00e8tre des cha\u00eenes de caract\u00e8res, et qui\naffiche son premier param\u00e8tre suivi d'un '\\n'.\n\nSi le nombre de param\u00e8tres est inf\u00e9rieur \u00e0 1, le programme affiche '\\n'.\n\nExemple:\n\n$> ./aff_first_param vincent mit \"l'ane\" dans un pre et \"s'en\" vint | cat -e\nvincent$\n$> ./aff_first_param \"j'aime le fromage de chevre\" | cat -e\nj'aime le fromage de chevre$\n$> ./aff_first_param\n$\n",
@@ -39,47 +20,7 @@
                 "1": "\"coucou salut hello\" \"bonjour\" \"caca\""
             }
         },
-        "4": {
-            "name": "aff_z",
-            "type": "program",
-            "instructions": "Assignment name  : aff_z\nExpected files   : aff_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend en param\u00e8tre une cha\u00eene de caract\u00e8res, et qui\naffiche sur la sortie standard le premier caract\u00e8re 'z' rencontr\u00e9 dans\ncette cha\u00eene, suivi de '\\n'. Si aucun 'z'\nn'est rencontr\u00e9 dans la cha\u00eene, le programme affiche 'z' suivi de\n'\\n'. Si le nombre de param\u00e8tres est diff\u00e9rent de 1, le\nprogramme affiche 'z' suivi de '\\n'.\n\nExemple:\n\n$> ./aff_z \"abc\" | cat -e\nz$\n$> ./aff_z \"dubO a POIL\" | cat -e\nz$\n$> ./aff_z \"zaz sent le poney\" | cat -e\nz$\n$> ./aff_z | cat -e\nz$\n",
-            "shellInstructions": "New excercise : aff_z !\nDirectory ./rendu/aff_z succesfuly created\n",
-            "expectedOutput": "z\n",
-            "argv": false
-        },
-        "5": {
-            "name": "maff_alpha",
-            "type": "program",
-            "instructions": "Assignment name  : maff_alpha\nExpected files   : maff_alpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche l'alphabet une lettre sur 2 en minuscule, et le\nreste en majuscule (Voir l'exemple), suivi d'un '\\n'.\n\nExemple:\n\n$> ./maff_alpha | cat -e\naBcDeFgHiJkLmNoPqRsTuVwXyZ$\n",
-            "shellInstructions": "New excercise : maff_alpha !\nDirectory ./rendu/maff_alpha succesfuly created\n",
-            "expectedOutput": "aBcDeFgHiJkLmNoPqRsTuVwXyZ\n",
-            "argv": false
-        },
-        "6": {
-            "name": "only_z",
-            "type": "program",
-            "instructions": "Assignment name  : only_z\nExpected files   : only_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche un caract\u00e8re 'z' sur la sortie standard.\n",
-            "shellInstructions": "New excercise : only_z !\nDirectory ./rendu/only_z succesfuly created\n",
-            "expectedOutput": "z",
-            "argv": false
-        },
-        "7": {
-            "name": "only_a",
-            "type": "program",
-            "instructions": "Assignment name  : only_a\nExpected files   : only_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche un caract\u00e8re 'a' sur la sortie standard.\n",
-            "shellInstructions": "New excercise : only_a !\nDirectory ./rendu/only_a succesfuly created\n",
-            "expectedOutput": "a",
-            "argv": false
-        },
-        "8": {
-            "name": "aff_a",
-            "type": "program",
-            "instructions": "Assignment name  : aff_a\nExpected files   : aff_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend une cha\u00eene de caract\u00e8res et affiche le premier\ncaract\u00e8re 'a' qu'il y rencontre, suivi d'un newline. S'il n'y a pas de\ncaract\u00e8re 'a' dans la cha\u00eene, le programme affiche juste un newline. Si le\nnombre de param\u00e8tres n'est pas 1, le programme affiche 'a' suivi d'un newline.\n\nExemple:\n\n$> ./aff_a \"abc\" | cat -e\na$\n$> ./aff_a \"dubO a POIL\" | cat -e\na$\n$> ./aff_a \"zz sent le poney\" | cat -e\n$\n$> ./aff_a | cat -e\na$\n",
-            "shellInstructions": "New excercise : aff_a !\nDirectory ./rendu/aff_a succesfuly created\n",
-            "expectedOutput": "a\n",
-            "argv": false
-        },
-        "9": {
+        "2": {
             "name": "hc_print_numbers",
             "type": "function",
             "instructions": "Assignment name  : ft_print_numbers\nExpected files   : ft_print_numbers.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire une fonction qui affiche tous les chiffres dans l'ordre croissant.\n\nElle devra \u00eatre prototyp\u00e9e de la fa\u00e7on suivante :\n\nvoid\tft_print_numbers(void);\n\n",
@@ -87,12 +28,71 @@
             "expectedOutput": "0123456789",
             "argv": false
         },
-        "10": {
+        "3": {
+            "name": "maff_revalpha",
+            "type": "program",
+            "instructions": "Assignment name  : maff_revalpha\nExpected files   : maff_revalpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche l'alphabet \u00e0 l'envers, une lettre sur 2 en\nminuscule, et le reste en majuscule (Voir l'exemple), suivi d'un '\\n'.\n\nExemple:\n\n$> ./maff_revalpha | cat -e\nzYxWvUtSrQpOnMlKjIhGfEdCbA$\n",
+            "shellInstructions": "New excercise : maff_revalpha !\nDirectory ./rendu/maff_revalpha succesfuly created\n",
+            "expectedOutput": "zYxWvUtSrQpOnMlKjIhGfEdCbA\n",
+            "argv": false
+        },
+        "4": {
+            "name": "aff_last_param",
+            "type": "program",
+            "instructions": "Assignment name  : aff_last_param\nExpected files   : aff_last_param.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend des cha\u00eenes, et affiche son dernier argument suivi d'un newline.\n\nS'il y a moins d'un argument, le programme affiche juste un newline.\n\nExemples:\n\n$> ./aff_last_param \"zaz\" \"mange\" \"des\" \"chats\" | cat -e\nchats$\n$> ./aff_last_param \"j'aime le savon\" | cat -e\nj'aime le savon$\n$> ./aff_last_param\n$\n",
+            "shellInstructions": "New excercise : aff_last_param !\nDirectory ./rendu/aff_last_param succesfuly created\n",
+            "expectedOutput": "hello\ncaca\n",
+            "argv": {
+                "0": "coucou salut hello",
+                "1": "\"coucou salut hello\" \"bonjour\" \"caca\""
+            }
+        },
+        "5": {
+            "name": "aff_z",
+            "type": "program",
+            "instructions": "Assignment name  : aff_z\nExpected files   : aff_z.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend en param\u00e8tre une cha\u00eene de caract\u00e8res, et qui\naffiche sur la sortie standard le premier caract\u00e8re 'z' rencontr\u00e9 dans\ncette cha\u00eene, suivi de '\\n'. Si aucun 'z'\nn'est rencontr\u00e9 dans la cha\u00eene, le programme affiche 'z' suivi de\n'\\n'. Si le nombre de param\u00e8tres est diff\u00e9rent de 1, le\nprogramme affiche 'z' suivi de '\\n'.\n\nExemple:\n\n$> ./aff_z \"abc\" | cat -e\nz$\n$> ./aff_z \"dubO a POIL\" | cat -e\nz$\n$> ./aff_z \"zaz sent le poney\" | cat -e\nz$\n$> ./aff_z | cat -e\nz$\n",
+            "shellInstructions": "New excercise : aff_z !\nDirectory ./rendu/aff_z succesfuly created\n",
+            "expectedOutput": "z\n",
+            "argv": false
+        },
+        "6": {
+            "name": "only_a",
+            "type": "program",
+            "instructions": "Assignment name  : only_a\nExpected files   : only_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche un caract\u00e8re 'a' sur la sortie standard.\n",
+            "shellInstructions": "New excercise : only_a !\nDirectory ./rendu/only_a succesfuly created\n",
+            "expectedOutput": "a",
+            "argv": false
+        },
+        "7": {
+            "name": "maff_alpha",
+            "type": "program",
+            "instructions": "Assignment name  : maff_alpha\nExpected files   : maff_alpha.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche l'alphabet une lettre sur 2 en minuscule, et le\nreste en majuscule (Voir l'exemple), suivi d'un '\\n'.\n\nExemple:\n\n$> ./maff_alpha | cat -e\naBcDeFgHiJkLmNoPqRsTuVwXyZ$\n",
+            "shellInstructions": "New excercise : maff_alpha !\nDirectory ./rendu/maff_alpha succesfuly created\n",
+            "expectedOutput": "aBcDeFgHiJkLmNoPqRsTuVwXyZ\n",
+            "argv": false
+        },
+        "8": {
             "name": "countdown",
             "type": "program",
             "instructions": "Assignment name  : ft_countdown\nExpected files   : ft_countdown.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche tous les chiffres en ordre descendant, suivis\nd'un newline.\n\nExemple:\n$> ./ft_countdown | cat -e\n9876543210$\n$>\n",
             "shellInstructions": "New excercise : countdown !\nDirectory ./rendu/countdown succesfuly created\n",
             "expectedOutput": "9876543210\n",
+            "argv": false
+        },
+        "9": {
+            "name": "aff_a",
+            "type": "program",
+            "instructions": "Assignment name  : aff_a\nExpected files   : aff_a.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui prend une cha\u00eene de caract\u00e8res et affiche le premier\ncaract\u00e8re 'a' qu'il y rencontre, suivi d'un newline. S'il n'y a pas de\ncaract\u00e8re 'a' dans la cha\u00eene, le programme affiche juste un newline. Si le\nnombre de param\u00e8tres n'est pas 1, le programme affiche 'a' suivi d'un newline.\n\nExemple:\n\n$> ./aff_a \"abc\" | cat -e\na$\n$> ./aff_a \"dubO a POIL\" | cat -e\na$\n$> ./aff_a \"zz sent le poney\" | cat -e\n$\n$> ./aff_a | cat -e\na$\n",
+            "shellInstructions": "New excercise : aff_a !\nDirectory ./rendu/aff_a succesfuly created\n",
+            "expectedOutput": "a\n",
+            "argv": false
+        },
+        "10": {
+            "name": "hello",
+            "type": "program",
+            "instructions": "Assignment name  : hello\nExpected files   : hello.c\nAllowed functions: write\n--------------------------------------------------------------------------------\n\n\u00c9crire un programme qui affiche \"Hello World!\" suivi d'un \\n.\n\nExemple:\n\n$>./hello\nHello World!\n$>./hello | cat -e\nHello World!$\n$>\n",
+            "shellInstructions": "New excercise : hello !\nDirectory ./rendu/hello succesfuly created\n",
+            "expectedOutput": "Hello World!\n",
             "argv": false
         }
     },

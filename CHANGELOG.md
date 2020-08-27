@@ -14,3 +14,14 @@
 - Bugfix on print_numbers, expecting a "\n" while this was not asked 
 *known issues*
 - While level 1 exam.json is generated, the expected outputs/args haven't been created yet, no it won't work.
+
+**Beta v1.3**
+- Implementation of traces : in case of a valid compilation but when output differs, a trace will be generated in ./traces/{exercise name}
+    - Compilation errors still get recorded in ./errorlog.txt, and this is intended
+    - Changed gitignore accordingly to include ./traces folder
+    - Also muted the result / expectedOutput directly in examshell, no longer needed thanks to the traces
+- Separated startup() method in three parts as it was getting a bit bloated
+- Added "How it works" section in README.md to guide new users
+*known issues*
+- While level 1 exam.json is generated, the expected outputs/args haven't been created yet, no it won't work.
+

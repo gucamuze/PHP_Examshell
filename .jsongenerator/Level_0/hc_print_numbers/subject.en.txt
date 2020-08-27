@@ -1,0 +1,11 @@
+Assignment name  : hc_print_numbers
+Expected files   : hc_print_numbers.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a function that displays all digits in ascending order.
+
+Your function must be declared as follows:
+
+void	hc_print_numbers(void);
+

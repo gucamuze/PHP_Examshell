@@ -1,0 +1,12 @@
+Assignment name  : countdown
+Expected files   : countdown.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that displays all digits in descending order, followed by a
+newline.
+
+Example:
+$> ./countdown | cat -e
+9876543210$
+$>

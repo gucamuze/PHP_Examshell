@@ -36,12 +36,14 @@ class JsonGenerator
     private $EncodeThisMofo = [];
     private $ExercisesList = [];
     private $helpSection = [];
-    private $ExercisesDirectoryPath = "./.jsongenerator/Level_0";
-    private $FinalJsonDirectoryPath = "./.assets/exams/exam_Level_0";
+    private $ExercisesDirectoryPath = "./.jsongenerator/Level_";
+    private $FinalJsonDirectoryPath = "./.assets/exams/exam_Level_";
     private $timeLimit = 14400;
 
-    function __construct($subjectLanguage)
+    function __construct($subjectLanguage, $examLevel)
     {
+        $this->ExercisesDirectoryPath .= $examLevel;
+        $this->FinalJsonDirectoryPath .= $examLevel;
         $tempExercisesList = array_values(array_diff(scandir($this->ExercisesDirectoryPath), [".", ".."]));
         shuffle($tempExercisesList);
         $this->build_help();
@@ -53,6 +55,9 @@ class JsonGenerator
     {
         $finalJson = array_merge(["timeLimit" => $this->timeLimit], ["exercises" => $this->ExercisesList], $this->helpSection);
         $this->EncodeThisMofo = json_encode($finalJson, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        if (!is_dir($this->FinalJsonDirectoryPath)) {
+            @system("mkdir " . $this->FinalJsonDirectoryPath);
+        }
         file_put_contents($this->FinalJsonDirectoryPath . "/exam.json", $this->EncodeThisMofo);
     }
 
@@ -87,5 +92,12 @@ if (isset($argv[1])) {
     }
 }
 
-echo "lang = " . $subjectLanguage;
-$jsonGenerator = new JsonGenerator($subjectLanguage);
+$examLevel = "0";
+
+if (isset($argv[2])) {
+    if ($argv[2] == "0" || $argv[2] == "1") {
+        $examLevel = $argv[2];
+    }
+}
+
+$jsonGenerator = new JsonGenerator($subjectLanguage, $examLevel);

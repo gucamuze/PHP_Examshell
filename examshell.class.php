@@ -2,21 +2,22 @@
 
 class Examshell
 {
-    private $examJsonPath = "./.assets/exams/exam_Level_0/";
-    private $mainsDirectoryPath = "./.mains/Level_0/";
+    private $examJsonPath = "./.assets/exams/exam_Level_";
+    private $mainsDirectoryPath = "./.mains/Level_";
     private $assignmentsDirectoryPath = "./rendu/";
     private $userInput, $startTime, $timeLimit, $pointsPerExercise;
     private $currentExercise = 0, $score = 0;
     private $exercises, $help = [];
     private $on = true;
+    private $examLevel = "0";
     private $subjectLanguage = "en";
 
     function __construct()
-    {        
+    {
         $this->startup();
 
         $this->parse_examshell_json();
-        
+
         $this->display_welcome_message();
 
         $this->userInput = fgets(STDIN);
@@ -30,7 +31,7 @@ class Examshell
     {
         // Check for existing /rendu folder //
         if (!is_dir($this->assignmentsDirectoryPath)) {
-            @system("mkdir " .$this->assignmentsDirectoryPath);
+            @system("mkdir " . $this->assignmentsDirectoryPath);
         } else {
             @system("clear");
             echo "Folder ./rendu already exists : do you want to delete its contents ? [y/n]" . PHP_EOL;
@@ -42,17 +43,44 @@ class Examshell
                 fgets(STDIN);
             }
         }
-        // Subject language //
-        echo "Please select a language for subjects : type [fr/en] (defaults to [en])" . PHP_EOL;
-        $lang = trim(fgets(STDIN));
-        if ($lang == 'fr'){
-            $this->subjectLanguage = "fr";
-        }
-        echo "Subjects language set on [".$this->subjectLanguage."]" . PHP_EOL;
-        echo "Press any key to continue..." . PHP_EOL;
-        fgets(STDIN);
 
-        @system("php ./.jsongenerator/jsongenerator.php " . $this->subjectLanguage);
+        echo "Please select a level for subjects [0, 1]" . PHP_EOL;
+        $level = trim(fgets(STDIN));
+        if ($level == '0' || $level == '1') {
+            $this->examLevel = $level;
+        }
+        $this->examJsonPath .= $this->examLevel . "/";
+        $this->mainsDirectoryPath .= $this->examLevel . "/";
+
+        echo "Exam level set on [" . $this->examLevel . "]" . PHP_EOL . PHP_EOL;
+
+        // New exam.json generation //
+        if (file_exists($this->examJsonPath . "exam.json")) {
+            echo "Generate a new examshell ? [y/n]" . PHP_EOL;
+            $new = trim(fgets(STDIN));
+        } else {
+            echo "No exam.json found for this level, generating a new one..." . PHP_EOL;
+            $new = "y";
+        }
+        if ($new == "y") {
+            // echo "Press any key to continue..." . PHP_EOL;
+            // fgets(STDIN);
+
+            echo "Please select a language for subjects : type [fr/en] (defaults to [en])" . PHP_EOL;
+            $lang = trim(fgets(STDIN));
+            if ($lang == 'fr') {
+                $this->subjectLanguage = "fr";
+            }
+            echo "Subjects language set on [" . $this->subjectLanguage . "]" . PHP_EOL;
+            echo "Press any key to continue..." . PHP_EOL;
+            fgets(STDIN);
+
+            echo $this->examJsonPath . PHP_EOL;
+            echo $this->mainsDirectoryPath . PHP_EOL;
+
+            @system("php ./.jsongenerator/jsongenerator.php " . $this->subjectLanguage . " " . $this->examLevel);
+        }
+        // Defaults to level 0
     }
 
     private function start_exercise()
@@ -69,7 +97,7 @@ class Examshell
         $currentExerciseShellInstructions = $currentExerciseArray["shellInstructions"] . "Press Enter when done, or type /help to display a list of available commands" . PHP_EOL;
 
         if (!is_dir($this->assignmentsDirectoryPath . $currentExerciseArray["name"])) {
-            @system("mkdir ". $this->assignmentsDirectoryPath . $currentExerciseName);
+            @system("mkdir " . $this->assignmentsDirectoryPath . $currentExerciseName);
             file_put_contents($this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".txt", $currentExerciseInstructions);
         }
 
@@ -90,7 +118,7 @@ class Examshell
                 if ($currentExerciseType == "program") {
                     @system("gcc " . $this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c 2>./errorlog.txt");
                 } else {
-                    @system("gcc ". $this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c " . $this->mainsDirectoryPath . $currentExerciseName . "_main.c 2>./errorlog.txt");
+                    @system("gcc " . $this->assignmentsDirectoryPath . $currentExerciseName . "/" . $currentExerciseName . ".c " . $this->mainsDirectoryPath . $currentExerciseName . "_main.c 2>./errorlog.txt");
                 }
                 if (file_exists("./a.out")) {
                     if ($currentExerciseArgs == null) {
@@ -147,7 +175,7 @@ class Examshell
                 $this->currentExercise++;
                 $this->score += $this->pointsPerExercise;
                 echo "\033[0;32m>>>>> SUCCESS !" . PHP_EOL . "Your new score is " . round($this->score, 1) . "/100 !\033[0m" . PHP_EOL . PHP_EOL;
-                if ($this->currentExercise > count($this->exercises)) {
+                if ($this->currentExercise >= count($this->exercises)) {
                     echo "\033[0;32mCongratulations, you finished this Examshell \\o/\033[0m" . PHP_EOL;
                     die;
                 } else {

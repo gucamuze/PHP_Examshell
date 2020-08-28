@@ -1,5 +1,5 @@
-Assignment name  : countdown
-Expected files   : countdown.c
+Assignment name  : ft_countdown
+Expected files   : ft_countdown.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
@@ -7,6 +7,6 @@ Allowed functions: write
 d'un newline.
 
 Exemple:
-$> ./countdown | cat -e
+$> ./ft_countdown | cat -e
 9876543210$
 $>

@@ -3,10 +3,10 @@ Expected files   : countdown.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
-Écrire un programme qui affiche tous les chiffres en ordre descendant, suivis
-d'un newline.
+Write a program that displays all digits in descending order, followed by a
+newline.
 
-Exemple:
+Example:
 $> ./countdown | cat -e
 9876543210$
 $>

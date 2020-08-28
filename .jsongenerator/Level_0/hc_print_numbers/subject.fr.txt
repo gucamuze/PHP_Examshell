@@ -1,5 +1,5 @@
-Assignment name  : ft_print_numbers
-Expected files   : ft_print_numbers.c
+Assignment name  : hc_print_numbers
+Expected files   : hc_print_numbers.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
@@ -7,5 +7,5 @@ Allowed functions: write
 
 Elle devra être prototypée de la façon suivante :
 
-void	ft_print_numbers(void);
+void	hc_print_numbers(void);
 

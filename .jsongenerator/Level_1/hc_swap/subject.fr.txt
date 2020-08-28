@@ -1,0 +1,11 @@
+Assignment name  : hc_swap
+Expected files   : hc_swap.c
+Allowed functions: 
+--------------------------------------------------------------------------------
+
+Écrire une fonction qui échange le contenu de deux entiers dont les adresses
+sont passées en paramêtres.
+
+Elle devra être prototypée de la façon suivante :
+
+void	hc_swap(int *a, int *b);

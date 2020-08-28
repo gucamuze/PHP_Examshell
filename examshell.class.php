@@ -42,6 +42,10 @@ class Examshell
                 fgets(STDIN);
             }
         }
+        // Check for existing /traces folder //
+        if (!is_dir("./traces")) {
+            @system("mkdir ./traces");
+        }
 
         $this->select_and_set_exam_level();
         $this->check_and_generate_json();
@@ -136,6 +140,7 @@ class Examshell
                                 $binaryOutputString .= " && ";
                             }
                         }
+                        // echo "COMPILING" . $binaryOutputString . PHP_EOL;
                         @system($binaryOutputString);
                     }
                     @system("rm ./a.out");

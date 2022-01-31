@@ -37,4 +37,4 @@ Tout ça pour dire : ne prenez pas le PHP Examshell trop au sérieux, sinon vous
 You can type "/help" anytime to display a list of available commands
 
 
-All feedback / bug reports are welcome, please send them to gcamuzea42@gmail.com
+All feedback / bug reports are welcome, please send them to gucamuze@student.42.fr
